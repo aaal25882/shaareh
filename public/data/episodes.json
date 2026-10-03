@@ -1,0 +1,339 @@
+{
+  "slides": [
+    {
+      "image": "pics/hafez.jpeg",
+      "episode": "hafez-252-1",
+      "verse": 0
+    },
+    {
+      "image": "media/neyname-demo.jpg",
+      "episode": "neyname-demo",
+      "verse": 0
+    },
+    {
+      "image": "pics/hafez2.jpg",
+      "episode": "hafez-252-1",
+      "verse": 1
+    }
+  ],
+  "poets": [
+    {
+      "id": "hafez",
+      "name": {
+        "fa": "حافظ",
+        "en": "Hafez",
+        "ar": "حافظ"
+      },
+      "full": {
+        "fa": "خواجه شمس‌الدین محمد حافظ شیرازی",
+        "en": "Khwaja Shams-ud-Din Muhammad Hafez of Shiraz",
+        "ar": "خواجه شمس الدين محمد حافظ الشيرازي"
+      },
+      "era": {
+        "fa": "سده‌ی هشتم",
+        "en": "14th century",
+        "ar": "القرن الثامن الهجري"
+      },
+      "hue": 28
+    },
+    {
+      "id": "molavi",
+      "name": {
+        "fa": "مولانا",
+        "en": "Rumi",
+        "ar": "مولانا"
+      },
+      "full": {
+        "fa": "جلال‌الدین محمد بلخی",
+        "en": "Jalal al-Din Muhammad Balkhi (Rumi)",
+        "ar": "جلال الدين محمد البلخي"
+      },
+      "era": {
+        "fa": "سده‌ی هفتم",
+        "en": "13th century",
+        "ar": "القرن السابع الهجري"
+      },
+      "hue": 200
+    },
+    {
+      "id": "saadi",
+      "name": {
+        "fa": "سعدی",
+        "en": "Saadi",
+        "ar": "سعدي"
+      },
+      "full": {
+        "fa": "مصلح‌الدین سعدی شیرازی",
+        "en": "Saadi of Shiraz",
+        "ar": "مصلح الدين سعدي الشيرازي"
+      },
+      "era": {
+        "fa": "سده‌ی هفتم",
+        "en": "13th century",
+        "ar": "القرن السابع الهجري"
+      },
+      "hue": 150
+    },
+    {
+      "id": "saeb",
+      "name": {
+        "fa": "صائب",
+        "en": "Saeb",
+        "ar": "صائب"
+      },
+      "full": {
+        "fa": "صائب تبریزی",
+        "en": "Saeb Tabrizi",
+        "ar": "صائب التبريزي"
+      },
+      "era": {
+        "fa": "سده‌ی یازدهم",
+        "en": "17th century",
+        "ar": "القرن الحادي عشر الهجري"
+      },
+      "hue": 330
+    },
+    {
+      "id": "ferdowsi",
+      "name": {
+        "fa": "فردوسی",
+        "en": "Ferdowsi",
+        "ar": "الفردوسي"
+      },
+      "full": {
+        "fa": "حکیم ابوالقاسم فردوسی توسی",
+        "en": "Abolqasem Ferdowsi of Tus",
+        "ar": "أبو القاسم الفردوسي الطوسي"
+      },
+      "era": {
+        "fa": "سده‌ی چهارم",
+        "en": "10th century",
+        "ar": "القرن الرابع الهجري"
+      },
+      "hue": 0
+    },
+    {
+      "id": "khayyam",
+      "name": {
+        "fa": "خیام",
+        "en": "Khayyam",
+        "ar": "الخيام"
+      },
+      "full": {
+        "fa": "حکیم عمر خیام نیشابوری",
+        "en": "Omar Khayyam of Nishapur",
+        "ar": "عمر الخيام النيسابوري"
+      },
+      "era": {
+        "fa": "سده‌ی پنجم",
+        "en": "11th century",
+        "ar": "القرن الخامس الهجري"
+      },
+      "hue": 270
+    }
+  ],
+  "episodes": [
+    {
+      "id": "hafez-252-1",
+      "title": {
+        "fa": "گر بُوَد عمر و به میخانه رسم بار دگر — بخش ۱",
+        "en": "“If life allows, I'll reach the tavern once more” — Part 1",
+        "ar": "«إن أمهلني العمر لأبلغنّ الحانة مرة أخرى» — الجزء الأول"
+      },
+      "poet": "hafez",
+      "book": {
+        "fa": "دیوان حافظ",
+        "en": "Divan of Hafez",
+        "ar": "ديوان حافظ"
+      },
+      "poem": {
+        "fa": "غزل شمارهٔ ۲۵۲",
+        "en": "Ghazal 252",
+        "ar": "الغزلية ٢٥٢"
+      },
+      "presenter": {
+        "fa": "درس‌گفتار استاد مهدی نوریان",
+        "en": "Lecture by Prof. Mahdi Nourian",
+        "ar": "محاضرة الأستاذ مهدي نوريان"
+      },
+      "summary": {
+        "fa": "قسمتِ نخستِ شرحِ غزلِ «گر بُوَد عمر» در کانال شارح. درس با خوانشِ کلِ غزل آغاز می‌شود و سپس به شرحِ دو بیتِ نخست می‌پردازد؛ با کلیک روی بیت‌های دیگر، ویدیو به لحظه‌ی خوانشِ همان بیت می‌رود.",
+        "en": "The first part of the commentary on the ghazal “If life allows” from the Shaareh channel. The lecture opens with a reading of the whole ghazal, then explains the first two verses; tapping any other verse jumps to the moment it is read aloud.",
+        "ar": "الجزء الأول من شرح غزلية «إن أمهلني العمر» من قناة شارح. يبدأ الدرس بقراءة الغزلية كاملة ثم يشرح البيتين الأولين؛ والنقر على أي بيت آخر ينقل المقطع إلى لحظة قراءته."
+      },
+      "image": "pics/hafez2.jpg",
+      "ganjoor": "https://ganjoor.net/hafez/ghazal/sh252",
+      "source": {
+        "type": "aparat",
+        "hash": "a20ofi6",
+        "duration": 2705
+      },
+      "verses": [
+        {
+          "t": 741,
+          "m1": "گر بود عمر و به میخانه رسم بار دگر",
+          "m2": "به جز از خدمتِ رندان نکنم کارِ دگر"
+        },
+        {
+          "t": 1713.5,
+          "m1": "خرّم آن روز که با دیدۀ گریان بروم",
+          "m2": "تا زنم آب در میکده یک بارِ دگر"
+        },
+        {
+          "t": 415,
+          "m1": "معرفت نیست در این قوم خدایا سببی",
+          "m2": "تا برم گوهرِ خود را به خریدارِ دگر"
+        },
+        {
+          "t": 426.5,
+          "m1": "یار اگر رفت و حقِ صحبتِ دیرین نشناخت",
+          "m2": "حاش لله که روم من ز پیِ یارِ دگر"
+        },
+        {
+          "t": 438.5,
+          "m1": "گر مساعد شودم دایرۀ چرخِ کبود",
+          "m2": "هم به دست آورمش باز به پرگارِ دگر"
+        },
+        {
+          "t": 463.5,
+          "m1": "عافیت می‌طلبد خاطرم ار بگذارند",
+          "m2": "غمزۀ شوخش و آن طرۀ طرارِ دگر"
+        },
+        {
+          "t": 452,
+          "m1": "رازِ سربستۀ ما بین که به دستان گفتند",
+          "m2": "هر زمان با دف و نی بر سر بازارِ دگر"
+        },
+        {
+          "t": 479.5,
+          "m1": "هر دم از درد بنالم که فلک هر ساعت",
+          "m2": "کندم قصدِ دلِ ریش به آزارِ دگر"
+        },
+        {
+          "t": 492,
+          "m1": "بازگویم نه در این واقعه حافظ تنها ست",
+          "m2": "غرقه گشتند در این بادیه بسیارِ دگر"
+        }
+      ]
+    },
+    {
+      "id": "neyname-demo",
+      "title": {
+        "fa": "نی‌نامه؛ شکایتِ نی از جدایی",
+        "en": "The Song of the Reed: its lament of separation",
+        "ar": "نشيد الناي: شكوى الناي من الفراق"
+      },
+      "poet": "molavi",
+      "book": {
+        "fa": "مثنوی معنوی",
+        "en": "Masnavi",
+        "ar": "المثنوي المعنوي"
+      },
+      "poem": {
+        "fa": "دفتر اول، سرآغاز (نی‌نامه)",
+        "en": "Book One, Prologue (The Song of the Reed)",
+        "ar": "الدفتر الأول، المطلع (نشيد الناي)"
+      },
+      "presenter": {
+        "fa": "ویدیوی نمایشی شارح",
+        "en": "Shaareh demo video",
+        "ar": "مقطع تجريبي من شارح"
+      },
+      "summary": {
+        "fa": "هشت بیتِ آغازینِ مثنوی، با شرحی کوتاه برای هر بیت. هر بیت درست در همان ثانیه‌ای روی تصویر می‌آید که در فهرستِ ابیات ثبت شده؛ این ویدیو برای نمایشِ پلیرِ شارح ساخته شده است.",
+        "en": "The opening eight verses of the Masnavi, each with a short note. Every verse appears on screen at exactly the second listed beside it; this video was made to demonstrate Shaareh's player.",
+        "ar": "الأبيات الثمانية الأولى من المثنوي، مع شرح قصير لكل بيت. يظهر كل بيت على الشاشة في الثانية المسجّلة بجانبه تمامًا؛ وقد صُنع هذا المقطع لعرض مشغّل شارح."
+      },
+      "ganjoor": "https://ganjoor.net/moulavi/masnavi/daftar1/sh1",
+      "image": "media/neyname-demo.jpg",
+      "source": {
+        "type": "file",
+        "url": "media/neyname-demo.mp4",
+        "poster": "media/neyname-demo.jpg",
+        "duration": 77
+      },
+      "verses": [
+        {
+          "t": 5,
+          "m1": "بشنو این نی چون شکایت می‌کند",
+          "m2": "از جدایی‌ها حکایت می‌کند",
+          "note": {
+            "fa": "«نی» نمادِ روحِ انسان یا انسانِ کامل است که از اصلِ خود جدا افتاده؛ ناله‌ی نی، روایتِ دردِ همین جدایی است.",
+            "en": "The reed is a symbol of the human soul, or of the perfect human, cut off from its origin; its lament tells the pain of that separation.",
+            "ar": "الناي رمزٌ للروح الإنسانية أو للإنسان الكامل الذي انفصل عن أصله؛ وأنينُه حكايةُ ألمِ هذا الفراق."
+          }
+        },
+        {
+          "t": 14,
+          "m1": "کز نِیِستان تا مرا بُبْریده‌اند",
+          "m2": "در نَفیرم مرد و زن نالیده‌اند",
+          "note": {
+            "fa": "«نیستان» عالمِ معنا و خاستگاهِ روح است. از روزی که نی را از آن بریده‌اند، ناله‌اش همه را به گریه انداخته؛ دردِ جدایی دردی همگانی است.",
+            "en": "The reed-bed is the world of meaning, the soul's homeland. Since the reed was cut from it, its cry has moved everyone to tears; the pain of separation is universal.",
+            "ar": "القصباء عالمُ المعنى وموطنُ الروح. ومنذ قُطع الناي منها أبكى أنينُه الجميع؛ فألمُ الفراق ألمٌ عام."
+          }
+        },
+        {
+          "t": 22,
+          "m1": "سینه خواهم شَرحه‌شَرحه از فراق",
+          "m2": "تا بگویم شرحِ دردِ اشتیاق",
+          "note": {
+            "fa": "رازِ اشتیاق را تنها با کسی می‌توان گفت که خود، دلی پاره‌پاره از فراق داشته باشد؛ همدردی شرطِ فهمِ این درد است.",
+            "en": "The secret of longing can only be told to one whose own heart has been torn by separation; sharing the pain is the condition for understanding it.",
+            "ar": "لا يُبثّ سرُّ الشوق إلا لمن تمزّق قلبُه من الفراق؛ فالمواساة شرطُ فهمِ هذا الألم."
+          }
+        },
+        {
+          "t": 31,
+          "m1": "هر کسی کو دور ماند از اصلِ خویش",
+          "m2": "باز جوید روزگارِ وصلِ خویش",
+          "note": {
+            "fa": "قاعده‌ای کلی: هر چیز که از اصلش دور بماند، در جست‌وجوی بازگشت به آن است؛ میلِ روح به مبدأ، میلی فطری است.",
+            "en": "A general law: whatever is kept far from its origin seeks to return to it; the soul's yearning for its source is innate.",
+            "ar": "قاعدة عامة: كلُّ ما بَعُد عن أصله يسعى إلى العودة إليه؛ وحنينُ الروح إلى مبدئها فطري."
+          }
+        },
+        {
+          "t": 39,
+          "m1": "من به هر جمعیّتی نالان شدم",
+          "m2": "جفت بدحالان و خوش‌حالان شدم",
+          "note": {
+            "fa": "نی در هر جمعی، شاد یا غمگین، نالیده و با همه همنشین شده است؛ هر کس به اندازه‌ی حالِ خود از این ناله بهره برده است.",
+            "en": "The reed has lamented in every company, joyful or sorrowful; each listener took from its cry as much as their own state allowed.",
+            "ar": "ناح الناي في كل جمع، فرِحًا كان أو حزينًا؛ وأخذ كلُّ سامع من أنينه بقدر حاله."
+          }
+        },
+        {
+          "t": 47,
+          "m1": "هر کسی از ظَنّ خود شد یار من",
+          "m2": "از درون من نجُست اَسرار من",
+          "note": {
+            "fa": "همه به گمانِ خود یارِ نی شدند، اما کسی رازِ درونش را نجست؛ همراهیِ ظاهری با فهمِ باطن یکی نیست.",
+            "en": "Everyone befriended the reed by their own assumptions, yet no one sought the secret within; outward company is not inner understanding.",
+            "ar": "صاحبَ الجميعُ النايَ بظنونهم، ولم يطلب أحدٌ سرَّه الباطن؛ فالصحبة الظاهرة غيرُ فهم الباطن."
+          }
+        },
+        {
+          "t": 56,
+          "m1": "سِرِّ من از نالهٔ من دور نیست",
+          "m2": "لیک چشم و گوش را آن نور نیست",
+          "note": {
+            "fa": "رازِ نی در همین ناله‌اش پیداست، اما چشم و گوشِ ظاهر نورِ دیدنِ آن را ندارند؛ فهمِ این راز، ادراکی درونی می‌خواهد.",
+            "en": "The reed's secret is plain in its very lament, but the outward eye and ear lack the light to see it; grasping it needs inner perception.",
+            "ar": "سرُّ الناي ظاهر في أنينه نفسه، لكن العين والأذن الظاهرتين لا تملكان نورَ رؤيته؛ وإدراكه يحتاج إلى بصيرة باطنة."
+          }
+        },
+        {
+          "t": 64,
+          "m1": "تن ز جان و جان ز تن مستور نیست",
+          "m2": "لیکْ کس را دیدِ جان دستور نیست",
+          "note": {
+            "fa": "جان و تن از هم پنهان نیستند و پیوندی تنگاتنگ دارند، با این همه دیدنِ جان برای هیچ‌کس ممکن نیست.",
+            "en": "Body and soul are not hidden from each other and are closely bound, yet seeing the soul is granted to no one.",
+            "ar": "ليس الجسد والروح محجوبَين أحدهما عن الآخر، بل بينهما صلة وثيقة، ومع ذلك فرؤية الروح غير متاحة لأحد."
+          }
+        }
+      ]
+    }
+  ]
+}

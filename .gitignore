@@ -1,0 +1,10 @@
+node_modules/
+*.log
+.env
+.claude/
+
+# فایلِ طراحیِ قبلی (Nuxt) — فقط برای مرجع، در مخزن نمی‌آید
+Shaareh-UI-master.zip
+
+# خروجیِ میانیِ فتوشاپ (۲۳ مگابایت) — با brand/prepare-logo.photoshop.jsx دوباره ساخته می‌شود
+brand/source/shaareh-hires.png

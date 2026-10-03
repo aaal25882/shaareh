@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>استودیوی زمان‌بندی — شارح</title>
+  <meta name="description" content="زمان‌بندیِ ابیات برای ویدیوهای شرح.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f5efe3">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/studio.css">
+  <script>(function(){var d=document.documentElement,L=['fa','en','ar'],g=function(k){try{return JSON.parse(localStorage.getItem('shaareh:'+k))}catch(e){return null}};var th=g('theme')||'auto',dk=th==='dark'||(th==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);d.classList.add(dk?'dark':'light');var q=new URLSearchParams(location.search).get('lang'),s=g('lang'),l=L.indexOf(q)>-1?q:(L.indexOf(s)>-1?s:'fa');d.lang=l;d.dir=l==='en'?'ltr':'rtl';if(l!=='fa'){d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending')},2500)}})();</script>
+</head>
+<body data-page="studio">
+  <div id="site-nav"></div>
+
+  <main class="container studio">
+    <div class="studio-intro">
+      <span class="eyebrow" data-i18n="studio.eyebrow">استودیو</span>
+      <h1 data-i18n="studio.title">زمان‌بندیِ ابیات</h1>
+      <p data-i18n="studio.lead"></p>
+    </div>
+
+    <div class="studio-grid">
+      <div class="studio-steps">
+        <section class="card" aria-labelledby="st-src">
+          <h2 id="st-src"><span class="step" data-step="1">۱</span><span data-i18n="studio.s1">منبع ویدیو</span></h2>
+          <div class="seg seg-sm" role="group" id="src-kind" data-i18n-attr="aria-label:studio.s1">
+            <button type="button" class="seg-btn" data-kind="aparat" aria-pressed="true"><b data-i18n="studio.kindAparat">آپارات</b></button>
+            <button type="button" class="seg-btn" data-kind="url" aria-pressed="false"><b data-i18n="studio.kindUrl">لینک مستقیم</b></button>
+            <button type="button" class="seg-btn" data-kind="local" aria-pressed="false"><b data-i18n="studio.kindLocal">فایل رایانه</b></button>
+          </div>
+          <form class="field-row" id="src-form">
+            <input type="text" id="src-input" dir="ltr" autocomplete="off" data-i18n-attr="aria-label:studio.srcLabel">
+            <input type="file" id="src-file" accept="video/*" hidden>
+            <button class="btn btn-primary btn-sm" type="submit" id="src-load" data-i18n="studio.load">بارگذاری</button>
+          </form>
+          <p class="hint" id="src-status"></p>
+          <div class="helper" id="local-helper" hidden>
+            <button class="btn btn-ghost btn-sm" type="button" id="helper-pick" data-i18n="studio.localHelper">زمان‌گذاری با فایلِ همین ویدیو (اختیاری)</button>
+            <input type="file" id="helper-file" accept="video/*" hidden>
+            <p class="hint" data-i18n="studio.localHelperHint"></p>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="st-poem">
+          <h2 id="st-poem"><span class="step" data-step="2">۲</span><span data-i18n="studio.s2">متن شعر</span></h2>
+          <form class="field-row" id="ganjoor-form">
+            <input type="text" id="ganjoor-url" dir="ltr" autocomplete="off" placeholder="https://ganjoor.net/hafez/ghazal/sh1" data-i18n-attr="aria-label:studio.ganjoorLabel">
+            <button class="btn btn-ghost btn-sm" type="submit" data-i18n="studio.ganjoorFetch">دریافت از گنجور</button>
+          </form>
+          <textarea id="poem-text" rows="8" class="verse-input" lang="fa" dir="rtl" data-i18n-attr="aria-label:studio.poemLabel" placeholder="بشنو این نی چون شکایت می‌کند / از جدایی‌ها حکایت می‌کند"></textarea>
+          <p class="hint" data-i18n="studio.poemHint"></p>
+          <button class="btn btn-ghost btn-sm" type="button" id="poem-apply" data-i18n="studio.apply">ساختِ فهرستِ ابیات</button>
+        </section>
+
+        <section class="card" aria-labelledby="st-time">
+          <h2 id="st-time"><span class="step" data-step="3">۳</span><span data-i18n="studio.s3">زمان‌بندی</span></h2>
+          <p class="hint" data-i18n="studio.timingHint"></p>
+          <ol class="timing-list" id="timing-list"></ol>
+        </section>
+
+        <section class="card" aria-labelledby="st-meta">
+          <h2 id="st-meta"><span class="step" data-step="4">۴</span><span data-i18n="studio.s4">مشخصات شرح</span></h2>
+          <form class="meta-grid" id="meta-form">
+            <label><span data-i18n="studio.fTitle">عنوان</span><input name="title" required></label>
+            <label><span data-i18n="studio.fId">شناسه (لاتین)</span><input name="id" dir="ltr" pattern="[a-z0-9-]+" placeholder="hafez-ghazal-3"></label>
+            <label><span data-i18n="studio.fPoet">شاعر</span><select name="poet"></select></label>
+            <label><span data-i18n="studio.fBook">کتاب</span><input name="book"></label>
+            <label><span data-i18n="studio.fPoem">شعر</span><input name="poem"></label>
+            <label><span data-i18n="studio.fPresenter">ارائه‌دهنده</span><input name="presenter"></label>
+            <label class="wide"><span data-i18n="studio.fSummary">خلاصه</span><textarea name="summary" rows="3"></textarea></label>
+            <label class="wide"><span data-i18n="studio.fGanjoor">نشانی گنجور</span><input name="ganjoor" dir="ltr"></label>
+            <label class="wide"><span data-i18n="studio.fImage">تصویر کارت (اختیاری)</span><input name="image" dir="ltr" placeholder="pics/…"></label>
+            <label class="check wide"><input type="checkbox" name="draft"> <span data-i18n="studio.fDraft"></span></label>
+          </form>
+        </section>
+
+        <section class="card" aria-labelledby="st-out">
+          <h2 id="st-out"><span class="step" data-step="5">۵</span><span data-i18n="studio.s5">خروجی</span></h2>
+          <div class="out-actions">
+            <button class="btn btn-primary btn-sm" type="button" id="out-preview" data-i18n="studio.preview">پیش‌نمایش در پلیر</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="out-copy" data-i18n="studio.copy">کپی JSON</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="out-download" data-i18n="studio.download">دانلود فایل</button>
+            <button class="btn btn-ghost btn-sm danger" type="button" id="out-reset" data-i18n="studio.reset">شروع از نو</button>
+          </div>
+          <ul class="out-warnings" id="out-warnings"></ul>
+          <textarea id="json-out" rows="12" dir="ltr" readonly aria-label="JSON"></textarea>
+          <p class="hint" data-i18n="studio.outHint"></p>
+        </section>
+      </div>
+
+      <aside class="studio-player">
+        <div class="studio-stage">
+          <div id="player"></div>
+        </div>
+        <div class="stamp-bar">
+          <div class="now">
+            <small data-i18n="studio.now">زمانِ فعلی</small>
+            <b id="now">۰۰:۰۰</b>
+          </div>
+          <button class="btn btn-flame" type="button" id="stamp"></button>
+          <button class="btn btn-ghost btn-sm" type="button" id="undo" disabled data-i18n="studio.undo">واگرد</button>
+        </div>
+        <p class="hint" id="sync-note"></p>
+      </aside>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="js/studio.js"></script>
+</body>
+</html>

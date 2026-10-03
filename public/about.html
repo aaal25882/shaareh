@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>دربارهٔ ما — شارح</title>
+  <meta name="description" content="شارح، وب‌سایتی برای شرح و تفسیر بیت‌به‌بیتِ شعر و ادب فارسی.">
+  <meta name="theme-color" content="#f5efe3">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="شارح">
+  <meta property="og:image" content="icons/og-image.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <script>(function(){var d=document.documentElement,L=['fa','en','ar'],g=function(k){try{return JSON.parse(localStorage.getItem('shaareh:'+k))}catch(e){return null}};var th=g('theme')||'auto',dk=th==='dark'||(th==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);d.classList.add(dk?'dark':'light');var q=new URLSearchParams(location.search).get('lang'),s=g('lang'),l=L.indexOf(q)>-1?q:(L.indexOf(s)>-1?s:'fa');d.lang=l;d.dir=l==='en'?'ltr':'rtl';if(l!=='fa'){d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending')},2500)}})();</script>
+</head>
+<body data-page="about">
+  <div id="site-nav"></div>
+
+  <main class="page container">
+    <article class="prose-card" id="about">
+      <img class="about-logo" src="icons/logo-color.svg" alt="" width="98" height="120">
+      <span class="eyebrow" data-i18n="about.eyebrow">دربارهٔ شارح</span>
+      <h1 data-i18n="about.title">شعر فارسی را بیت به بیت بفهمیم</h1>
+      <p data-i18n="about.p1"></p>
+      <p data-i18n="about.p2"></p>
+      <p data-i18n="about.p3"></p>
+    </article>
+
+    <section class="prose-card" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title" data-i18n="about.contactTitle">تماس با ما</h2>
+      <p data-i18n="about.contactLead"></p>
+      <ul class="contact-list" id="contact-list"></ul>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module">
+    import { initSite } from './js/site.js';
+    import { t } from './js/i18n.js';
+    import { SITE } from './js/data.js';
+    import { icon } from './js/icons.js';
+    import { h } from './js/util.js';
+
+    const page = location.hash === '#contact' ? 'contact' : 'about';
+    await initSite(page);
+    document.title = `${t('about.pageTitle')} — ${t('title')}`;
+
+    const items = [
+      ['website', 'external', SITE.contact.website],
+      ['aparat', 'external', SITE.contact.aparat],
+      ['github', 'link', SITE.contact.github],
+      ['email', 'link', SITE.contact.email && `mailto:${SITE.contact.email}`],
+    ].filter(([, , href]) => href);
+    document.getElementById('contact-list').replaceChildren(
+      ...items.map(([key, ic, href]) =>
+        h('li', {}, h('a', { href, target: href.startsWith('mailto:') ? null : '_blank', rel: 'noopener', html: icon(ic) },
+          h('span', {}, h('b', {}, t(`about.${key}`)), h('small', {}, href.replace(/^mailto:|^https?:\/\//, '').replace(/\/$/, '')))))
+      )
+    );
+    if (location.hash) document.querySelector(location.hash)?.scrollIntoView();
+  </script>
+</body>
+</html>

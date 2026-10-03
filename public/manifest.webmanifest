@@ -1,0 +1,17 @@
+{
+  "name": "شارح — شرح و تفسیر شعر و ادب فارسی",
+  "short_name": "شارح",
+  "description": "گزیده‌ی اشعار و کتاب‌های ادب فارسی با شرحِ ویدیویی؛ روی هر بیت بزنید تا ویدیو به لحظه‌ی شرحِ همان بیت برود.",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#110e0b",
+  "theme_color": "#110e0b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

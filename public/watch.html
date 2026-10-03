@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>شارح</title>
+  <meta name="description" content="شرح و تفسیر شعر فارسی با فهرست ابیات؛ روی هر بیت بزنید تا ویدیو به لحظه‌ی شرح همان بیت برود.">
+  <meta name="theme-color" content="#f5efe3">
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="شارح">
+  <meta property="og:image" content="icons/og-image.jpg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/player.css">
+  <script>(function(){var d=document.documentElement,L=['fa','en','ar'],g=function(k){try{return JSON.parse(localStorage.getItem('shaareh:'+k))}catch(e){return null}};var th=g('theme')||'auto',dk=th==='dark'||(th==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);d.classList.add(dk?'dark':'light');var q=new URLSearchParams(location.search).get('lang'),s=g('lang'),l=L.indexOf(q)>-1?q:(L.indexOf(s)>-1?s:'fa');d.lang=l;d.dir=l==='en'?'ltr':'rtl';if(l!=='fa'){d.classList.add('i18n-pending');setTimeout(function(){d.classList.remove('i18n-pending')},2500)}})();</script>
+</head>
+<body data-page="watch">
+  <div id="site-nav"></div>
+
+  <main class="watch">
+    <section class="stage" id="stage" data-panel="closed">
+      <aside class="stage-panel" data-i18n-attr="aria-label:panel.label" aria-label="فهرست ابیات">
+        <div id="verse-panel"></div>
+      </aside>
+      <div class="stage-player">
+        <div id="player"></div>
+      </div>
+    </section>
+
+    <section class="container ep-info" id="ep-info">
+      <p class="ep-kicker" data-i18n="watch.loading">در حال بارگذاری…</p>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script type="module" src="js/watch.js"></script>
+</body>
+</html>

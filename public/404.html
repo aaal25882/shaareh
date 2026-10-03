@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>صفحه پیدا نشد — شارح</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // روی GitHub Pages سایت زیرِ /<نام مخزن>/ است؛ مسیرِ پایه را از نشانی پیدا می‌کنیم
+    (function () {
+      var seg = location.pathname.split('/').filter(Boolean);
+      var base = /\.github\.io$/.test(location.hostname) && seg.length ? '/' + seg[0] + '/' : '/';
+      document.write('<base href="' + base + '">');
+    })();
+  </script>
+  <link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&family=Noto+Nastaliq+Urdu:wght@400&display=swap">
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    body { justify-content: center; align-items: center; text-align: center; padding: 32px 16px; }
+    .lost img { height: 140px; width: auto; margin-bottom: 8px; }
+    .lost h1 { font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 2.2; color: var(--accent); margin: 0; }
+    .lost .verse { display: flex; flex-direction: column; max-width: 420px; margin: 8px auto 6px; font-family: var(--font-verse); font-size: 20px; line-height: 2; }
+    .lost .verse span:first-child { text-align: right; }
+    .lost .verse span:last-child { text-align: left; }
+    .lost small { display: block; margin-bottom: 26px; color: var(--muted); }
+  </style>
+  <script>(function(){var d=document.documentElement,g=function(k){try{return JSON.parse(localStorage.getItem('shaareh:'+k))}catch(e){return null}};var th=g('theme')||'auto',dk=th==='dark'||(th==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);d.classList.add(dk?'dark':'light')})();</script>
+</head>
+<body>
+  <main class="lost">
+    <img class="logo-for-light" src="icons/logo-ink.svg" alt="شارح">
+    <img class="logo-for-dark" src="icons/logo-light.svg" alt="شارح">
+    <h1>این صفحه پیدا نشد</h1>
+    <p class="verse" lang="fa"><span>هر کسی کو دور ماند از اصلِ خویش</span><span>باز جوید روزگارِ وصلِ خویش</span></p>
+    <small>مولانا، مثنوی معنوی · Page not found · الصفحة غير موجودة</small>
+    <a class="btn btn-flame" href="./">بازگشت به خانه · Home</a>
+  </main>
+</body>
+</html>

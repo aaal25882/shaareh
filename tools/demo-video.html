@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ساخت ویدیوی نمایشی — شارح</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Vazirmatn:wght@400;600;800&display=swap">
+  <style>
+    body { margin: 0; padding: 24px; background: #0e0b08; color: #f2e9d8; font: 15px/1.8 Vazirmatn, sans-serif; }
+    canvas { width: 100%; max-width: 960px; border-radius: 12px; display: block; margin: 16px 0; background: #000; }
+    button { font: inherit; padding: 8px 18px; border-radius: 999px; border: 0; background: #dcaa52; color: #1a1209; font-weight: 700; cursor: pointer; }
+    #log { white-space: pre-wrap; color: #a8987d; }
+  </style>
+</head>
+<body>
+  <h1>ساخت ویدیوی نمایشی</h1>
+  <p>این ابزار فقط در حالت توسعه (<code>npm run dev</code>) در دسترس است. ویدیو را از روی ابیات و زمان‌های شرحِ <b id="ep-id"></b> در <code>data/episodes.json</code> می‌سازد؛ پس هر بیت دقیقاً در همان ثانیه‌ای روی تصویر می‌آید که در فهرست ثبت شده است.</p>
+  <button id="go" type="button">ساخت و ذخیره</button>
+  <canvas id="c" width="1280" height="720"></canvas>
+  <div id="log"></div>
+
+  <script type="module">
+    import { Muxer, ArrayBufferTarget } from 'https://cdn.jsdelivr.net/npm/mp4-muxer@5.2.2/build/mp4-muxer.mjs';
+
+    const EPISODE_ID = new URLSearchParams(location.search).get('id') || 'neyname-demo';
+    const W = 1280, H = 720, FPS = 30;
+    const GOLD = '#dcaa52', INK = '#f2e9d8', MUTED = '#b4a487';
+    const FA = (s) => String(s).replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
+
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const log = (m) => (document.getElementById('log').textContent += m + '\n');
+    document.getElementById('ep-id').textContent = EPISODE_ID;
+
+    const catalog = await fetch('/data/episodes.json').then((r) => r.json());
+    const ep = catalog.episodes.find((e) => e.id === EPISODE_ID);
+    const verses = ep.verses;
+    const DURATION = ep.source.duration;
+    const OUTRO = verses.at(-1).t + 8;
+
+    await Promise.all([
+      document.fonts.load('52px "Noto Naskh Arabic"'),
+      document.fonts.load('700 52px "Noto Naskh Arabic"'),
+      document.fonts.load('48px "Noto Nastaliq Urdu"'),
+      document.fonts.load('26px Vazirmatn'),
+      document.fonts.load('800 26px Vazirmatn'),
+    ]);
+
+    // نقش‌مایه‌ی ستاره‌ای پس‌زمینه
+    const tile = new OffscreenCanvas(64, 64);
+    const t2 = tile.getContext('2d');
+    t2.strokeStyle = 'rgba(220,170,82,0.10)';
+    t2.lineWidth = 1;
+    t2.beginPath();
+    t2.moveTo(32, 8); t2.lineTo(38.4, 25.6); t2.lineTo(56, 32); t2.lineTo(38.4, 38.4);
+    t2.lineTo(32, 56); t2.lineTo(25.6, 38.4); t2.lineTo(8, 32); t2.lineTo(25.6, 25.6); t2.closePath();
+    t2.stroke();
+    t2.strokeRect(20, 20, 24, 24);
+    const pattern = ctx.createPattern(tile, 'repeat');
+
+    function wrap(text, maxWidth) {
+      const words = text.split(' ');
+      const lines = [];
+      let line = '';
+      for (const w of words) {
+        const test = line ? line + ' ' + w : w;
+        if (ctx.measureText(test).width > maxWidth && line) {
+          lines.push(line);
+          line = w;
+        } else line = test;
+      }
+      if (line) lines.push(line);
+      return lines;
+    }
+
+    const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
+
+    function frame(t) {
+      // پس‌زمینه
+      const g = ctx.createRadialGradient(W * 0.85, 0, 50, W * 0.6, H * 0.4, W);
+      g.addColorStop(0, '#2a1f14');
+      g.addColorStop(1, '#0e0b08');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = pattern;
+      ctx.fillRect(0, 0, W, H);
+      ctx.strokeStyle = 'rgba(220,170,82,0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(28, 28, W - 56, H - 56);
+
+      ctx.direction = 'rtl';
+      ctx.textBaseline = 'alphabetic';
+
+      // سربرگ
+      ctx.fillStyle = GOLD;
+      ctx.textAlign = 'right';
+      ctx.font = '40px "Noto Nastaliq Urdu"';
+      ctx.fillText('شارح', W - 64, 104);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = MUTED;
+      ctx.font = '20px Vazirmatn';
+      ctx.fillText(`${ep.book} · ${ep.poem}`, 64, 92);
+
+      ctx.textAlign = 'center';
+      const first = verses[0].t;
+
+      if (t < first) {
+        // پیشگفتار
+        const a = ease(t / 0.8);
+        ctx.globalAlpha = a;
+        ctx.fillStyle = GOLD;
+        ctx.font = '64px "Noto Nastaliq Urdu"';
+        ctx.fillText('شرحِ نی‌نامه', W / 2, 330);
+        ctx.fillStyle = INK;
+        ctx.font = '600 30px Vazirmatn';
+        ctx.fillText(`${FA(verses.length)} بیتِ آغازینِ مثنوی معنوی`, W / 2, 430);
+        ctx.fillStyle = MUTED;
+        ctx.font = '22px Vazirmatn';
+        ctx.fillText('مولانا جلال‌الدین محمد بلخی', W / 2, 480);
+        ctx.globalAlpha = 1;
+      } else if (t >= OUTRO) {
+        const a = ease((t - OUTRO) / 0.8);
+        ctx.globalAlpha = a;
+        ctx.fillStyle = GOLD;
+        ctx.font = '56px "Noto Nastaliq Urdu"';
+        ctx.fillText('پایانِ بخشِ نخست', W / 2, 360);
+        ctx.fillStyle = MUTED;
+        ctx.font = '22px Vazirmatn';
+        ctx.fillText('شارح — شرحِ شعرِ فارسی، بیت به بیت', W / 2, 430);
+        ctx.globalAlpha = 1;
+      } else {
+        let i = 0;
+        for (let k = 0; k < verses.length; k++) if (verses[k].t <= t) i = k;
+        const v = verses[i];
+        const local = t - v.t;
+
+        ctx.globalAlpha = ease(local / 0.5);
+        ctx.fillStyle = GOLD;
+        ctx.font = '800 22px Vazirmatn';
+        ctx.fillText(`بیتِ ${FA(i + 1)} از ${FA(verses.length)}`, W / 2, 196);
+
+        ctx.globalAlpha = ease((local - 0.15) / 0.6);
+        ctx.fillStyle = INK;
+        ctx.font = '600 50px "Noto Naskh Arabic"';
+        ctx.textAlign = 'right';
+        ctx.fillText(v.m1, W / 2 + 420, 300);
+        ctx.textAlign = 'left';
+        ctx.fillText(v.m2, W / 2 - 420, 384);
+
+        // آرایه‌ی میانی
+        ctx.globalAlpha = ease((local - 0.4) / 0.6);
+        ctx.textAlign = 'center';
+        ctx.strokeStyle = 'rgba(220,170,82,0.5)';
+        ctx.beginPath();
+        ctx.moveTo(W / 2 - 160, 436); ctx.lineTo(W / 2 - 14, 436);
+        ctx.moveTo(W / 2 + 14, 436); ctx.lineTo(W / 2 + 160, 436);
+        ctx.stroke();
+        ctx.fillStyle = GOLD;
+        ctx.beginPath();
+        ctx.moveTo(W / 2, 428); ctx.lineTo(W / 2 + 8, 436); ctx.lineTo(W / 2, 444); ctx.lineTo(W / 2 - 8, 436);
+        ctx.fill();
+
+        // شرح کوتاه
+        ctx.globalAlpha = ease((local - 0.9) / 0.8);
+        ctx.fillStyle = MUTED;
+        ctx.font = '25px Vazirmatn';
+        wrap(v.note || '', 940).forEach((line, li) => ctx.fillText(line, W / 2, 500 + li * 44));
+        ctx.globalAlpha = 1;
+      }
+
+      // نوار پیشرفت با نشانه‌ی ابیات
+      const barY = H - 56, x0 = 64, x1 = W - 64;
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      ctx.fillRect(x0, barY, x1 - x0, 3);
+      ctx.fillStyle = GOLD;
+      ctx.fillRect(x0, barY, (x1 - x0) * Math.min(1, t / DURATION), 3);
+      ctx.fillStyle = 'rgba(255,248,230,0.8)';
+      for (const v of verses) ctx.fillRect(x0 + (x1 - x0) * (v.t / DURATION) - 1, barY - 4, 2, 11);
+    }
+
+    async function build() {
+      const btn = document.getElementById('go');
+      btn.disabled = true;
+      let config = { codec: 'avc1.4d0028', width: W, height: H, bitrate: 1_600_000, framerate: FPS };
+      if (!(await VideoEncoder.isConfigSupported(config)).supported) {
+        config = { ...config, codec: 'avc1.42001f' };
+        if (!(await VideoEncoder.isConfigSupported(config)).supported) throw new Error('H.264 encoder not supported');
+      }
+      log('codec: ' + config.codec);
+
+      const muxer = new Muxer({ target: new ArrayBufferTarget(), video: { codec: 'avc', width: W, height: H, frameRate: FPS }, fastStart: 'in-memory' });
+      let failure = null;
+      const encoder = new VideoEncoder({ output: (chunk, meta) => muxer.addVideoChunk(chunk, meta), error: (e) => (failure = e) });
+      encoder.configure(config);
+
+      const total = Math.round(DURATION * FPS);
+      for (let f = 0; f < total; f++) {
+        if (failure) throw failure;
+        frame(f / FPS);
+        const vf = new VideoFrame(canvas, { timestamp: Math.round((f * 1e6) / FPS), duration: Math.round(1e6 / FPS) });
+        encoder.encode(vf, { keyFrame: f % FPS === 0 });
+        vf.close();
+        while (encoder.encodeQueueSize > 12) await new Promise((r) => setTimeout(r, 0));
+        if (f % (FPS * 10) === 0) log(`frame ${f}/${total}`);
+      }
+      await encoder.flush();
+      muxer.finalize();
+      const mp4 = muxer.target.buffer;
+      log(`mp4: ${(mp4.byteLength / 1024).toFixed(0)} KB`);
+
+      let r = await fetch(`/__dev/media/${EPISODE_ID}.mp4`, { method: 'POST', body: mp4 });
+      log('save mp4: ' + r.status + ' ' + (await r.text()));
+
+      frame(verses[0].t + 4);
+      const jpg = await new Promise((res) => canvas.toBlob(res, 'image/jpeg', 0.86));
+      r = await fetch(`/__dev/media/${EPISODE_ID}.jpg`, { method: 'POST', body: jpg });
+      log('save jpg: ' + r.status + ' ' + (await r.text()));
+      log('DONE');
+      btn.disabled = false;
+    }
+
+    frame(verses[1].t + 3);
+    document.getElementById('go').addEventListener('click', () => build().catch((e) => log('ERROR: ' + e.message)));
+    window.__buildDemo = build;
+  </script>
+</body>
+</html>
